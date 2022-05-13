@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.customerprovider.Dao.CustomerDao">
+    <resultMap id="customerMap" type="Customer">
+        <id property="customerId" column="id"/>
+        <result property="customerAddress" column="customer_address"/>
+        <result property="customerName" column="customer_name"/>
+        <result property="customerTicket" column="customer_ticket"/>
+    </resultMap>
+    <insert id="add">
+        insert into customer(customer_name,customer_address,customer_ticket)
+        values(#{customerName},#{customerAddress},#{customerTicket})
+    </insert>
+    <delete id="deleteBatch">
+        delete from customer where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="getCustomerList" resultMap="customerMap">
+        select * from customer
+    </select>
+    <select id="getCustomerById" resultMap="customerMap">
+        select * from customer where id=#{id}
+    </select>
+</mapper>

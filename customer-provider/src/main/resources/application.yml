@@ -1,0 +1,20 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: customer-provider # ???????Eureka???
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/db?userSSL=false&serverTimezone=UTC
+      username: root
+      password: 2337910658hy
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultzone: http://127.0.0.1:8761/eureka
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.example.goodscommons.pojo
